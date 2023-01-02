@@ -25,13 +25,15 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-column-gap: 11px;
   }
 
   &__top {
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
     align-items: center;
     justify-content: space-between;
   }
@@ -104,6 +106,10 @@ body {
         color: darken($color: #b6b6b6, $amount: 50);
       }
     }
+  }
+
+  .content__items {
+    display: block;
   }
 
   &__item {
