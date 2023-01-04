@@ -37,6 +37,11 @@ body {
     align-items: center;
     justify-content: space-between;
   }
+
+  &__error-info {
+    margin: 60px auto;
+    text-align: center;
+  }
 }
 
 .container {
