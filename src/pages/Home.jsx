@@ -26,6 +26,9 @@ const Home = () => {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
+  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
+
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
   };
@@ -81,9 +84,6 @@ const Home = () => {
       isSearch.current = true;
     }
   }, []);
-
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
-  const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
