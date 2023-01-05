@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import {
   selectFilter,
@@ -28,7 +29,7 @@ const Home = () => {
 
   const sortType = sort.sortProperty;
 
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const pizzas = items.map((obj) => <Link key={obj.id} to={`pizza/${obj.id}` }><PizzaBlock {...obj} /></Link>);
   const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
 
   const onChangeCategory = (id) => {
