@@ -18,7 +18,7 @@ import Pagination from '../components/Pagination';
 import { list } from '../components/Sort';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isSearch = React.useRef(false);
@@ -29,14 +29,14 @@ const Home = () => {
 
   const sortType = sort.sortProperty;
 
-  const pizzas = items.map((obj) => <Link key={obj.id} to={`pizza/${obj.id}` }><PizzaBlock {...obj} /></Link>);
+  const pizzas = items.map((obj: any) => <Link key={obj.id} to={`pizza/${obj.id}` }><PizzaBlock {...obj} /></Link>);
   const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
-  const onChangePage = (number) => {
+  const onChangePage = (number: number) => {
     dispatch(setCurrentPage(number));
   };
 
@@ -46,6 +46,7 @@ const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
+    //@ts-ignore
     dispatch(fetchPizzas({ order, sortBy, category, search, currentPage }));
 
     window.scrollTo(0, 0);
