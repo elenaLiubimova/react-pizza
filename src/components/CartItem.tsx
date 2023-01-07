@@ -1,5 +1,5 @@
-import { Action } from '@remix-run/router';
 import React from 'react';
+import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import { addItem, CartItem, minusItem, removeItem } from '../redux/slices/cartSlice';
 
@@ -21,6 +21,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({ id, title, type, size, price, 
   };
 
   const onClickMinus = () => {
+    
     dispatch(minusItem(id));
   };
 
@@ -42,8 +43,9 @@ const CartItemBlock: React.FC<CartItemProps> = ({ id, title, type, size, price, 
         </p>
       </div>
       <div className="cart__item-count">
-        <div
-          className="button button--outline button--circle cart__item-count-minus"
+        <button
+          className={clsx("button button--outline button--circle cart__item-count-minus", {"cart__item-count-minus--disabled": count === 1})}
+          disabled={count === 1}
           onClick={onClickMinus}
         >
           <svg
@@ -62,9 +64,9 @@ const CartItemBlock: React.FC<CartItemProps> = ({ id, title, type, size, price, 
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
         <b>{count}</b>
-        <div
+        <button
           className="button button--outline button--circle cart__item-count-plus"
           onClick={onClickPlus}
         >
@@ -84,7 +86,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({ id, title, type, size, price, 
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
       <div className="cart__item-price">
         <b>{price * count} ₽</b>
